@@ -1,0 +1,223 @@
+/* ==================
+ *  VARIABLES
+ * ================== */
+:root {
+  --color-white: hsl(100, 100%, 100%);
+  --color-gray: hsl(0, 0%, 71%);
+  --color-gray-dark: hsl(0, 0%, 30%);
+  --color-gray-light: hsl(0, 0%, 90%);
+  --color-black-light: hsl(0, 0%, 21%);
+  --color-red: hsl(348, 100%, 61%);
+
+  --color-cursor: rgb(200, 200, 200);
+  --color-bg: hsl(0, 0%, 11%);
+}
+/* ==================
+ *  LAYOUT
+ * ================== */
+body {
+  font-family: 'Permanent Marker', cursive;
+  color: var(--color-black);
+  background: var(--color-bg);
+}
+.outer-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.inner-container {
+  border: 10px solid var(--color-gray-light);
+  padding: 1.25rem 1.875rem 1.875rem;
+  margin-top: 1.25rem;
+  border-radius: 2px;
+}
+/* ==================
+ *  APP
+ * ================== */
+h1 {
+  color: var(--color-white);
+  margin: 0 0 1.5625rem;
+  font-size: 1.9em;
+  text-align: center;
+  text-shadow: 2px 2px 0px var(--color-gray-dark);
+}
+canvas {
+  background: var(--color-white);
+  cursor: none;
+}
+/* ==================
+ *  Control
+ * ================== */
+.control {
+  border-radius: 5px;
+  padding: 1.25rem 0.625rem;
+  margin-top: 0.625rem;
+  background: var(--color-black-light);
+}
+.control-bottom {
+  display: flex;
+}
+.control-line-width {
+  flex: 1;
+}
+.control-clear {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-gray-light);
+  cursor: pointer;
+  font-size: 20px;
+  border: 2px solid transparent;
+}
+.control-eraser {
+  margin-left: 0.625rem;
+  margin-right: 0.625rem;
+}
+.control-eraser:hover {
+  border: 2px solid var(--color-gray);
+  color: var(--color-gray);
+}
+.control-eraser.active {
+  border: 2px solid white;
+  color: white;
+}
+.control-trash:hover {
+  border: 2px solid var(--color-red);
+  color: var(--color-red);
+}
+/* ==================
+ * Canvas Cursor
+ * ================== */
+canvas:hover + .cursor {
+  opacity: 1;
+}
+canvas:active + .cursor {
+  border-color: transparent;
+}
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid var(--color-cursor);
+  padding: 2px;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 100ms;
+}
+/* ==================
+ * Color Palette
+ * ================== */
+.color {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.color:hover {
+  border: 2px solid var(--color-gray);
+}
+.color.active {
+  border: 2px solid var(--color-white);
+}
+.palette{
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  justify-content: space-around;
+}
+.palette li > *{
+  cursor: pointer;
+}
+.palette li > div:hover {
+  transition: all 100ms;
+}
+/* ==================
+ *  SLIDER Boilerplate
+ * ================== */
+.slider {
+  /* Set your configuration here... */
+  --slider-range-color: hsl(0, 0%, 30%);
+  --slider-thumb-color: #ffffff;
+  --slider-range-height: 5px;
+  --slider-thumb-height: 20px;
+  --slider-thumb-radius: 50%;
+  --slider-range-radius: 5px;
+
+  -webkit-appearance: none;
+  width: 100%;
+  height: var(--slider-range-height);
+  border-radius: var(--slider-range-radius);
+  background: var(--slider-range-color);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.slider:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--slider-thumb-height);
+  height: var(--slider-thumb-height);
+  border-radius: var(--slider-thumb-radius);
+  background: var(--slider-thumb-color);
+  cursor: pointer;
+}
+.slider::-moz-range-thumb {
+  width: var(--slider-thumb-height);
+  height: var(--slider-thumb-height);
+  border-radius: var(--slider-thumb-radius);
+  background: var(--slider-thumb-color);
+  cursor: pointer;
+}
+/* ==================
+ *  SOCIAL MEDIA
+ * ================== */
+.social-media-footer {
+  --font-color: hsl(0, 0%, 30%);
+  --font-size: 0.8rem;
+}
+.social-columns {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.9375rem;
+  padding-bottom: 0.625rem;
+  font-size: var(--font-size);
+  color: var(--font-color);
+  width: 100%;
+}
+.social-columns .column {
+  padding: 0.4rem;
+  text-align: center;
+}
+.social-columns a {
+  text-decoration: none;
+  color: var(--font-color);
+}
+.social-columns a:hover {
+  text-decoration: underline;
+}
+/* GITHUB */
+.github-code {
+  color: var(--font-color);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 0.625rem;
+}
+.github-code a {
+  text-decoration: none;
+  color: var(--font-color);
+}
+.github-code a:hover {
+   text-decoration: underline;
+}

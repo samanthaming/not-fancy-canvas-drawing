@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+  <title>Not Fancy Canvas Drawing</title>
+</head>
+
+<body>
+  <!-- app -->
+  <div id="app">
+    <div class="outer-container">
+      <div class="inner-container">
+
+        <h1>Not Fancy Canvas Drawing</h1>
+
+        <canvas ref="myCanvas" width="400px" height="350px"
+          v-on:mousedown="onMouseDown"
+          v-on:mouseup="onMouseUp"
+          v-on:mousemove="onMouseMove"
+          v-on:mouseout="onMouseOut"
+          v-on:mouseenter="onMouseEnter"
+        ></canvas>
+
+        <div ref="cursor" class="cursor" :style="cursorStyle"></div>
+
+        <div class="control">
+          <ul class="palette">
+            <li v-for="(color, index) in colors" :key="index">
+              <div :class="['color', {'active': color === selectedColor}]"
+                :style="{background: color}"
+                @click="selectColor(color)"
+              ></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="control-bottom">
+
+          <div class="control control-line-width">
+            <input type="range" class="slider" min="1" max="20" v-model="lineWidth">
+          </div>
+
+          <div :class="['control', 'control-clear', 'control-eraser', {'active': isEraser}]" @click="selectEraser">
+            <i class="fa fa-eraser" aria-hidden="true"></i>
+          </div>
+
+          <div :class="['control', 'control-clear', 'control-trash']" @click="selectTrash">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <!-- Social Media Footer -->
+      <div class="social-media-footer">
+        <div class="columns is-mobile social-columns">
+          <div class="column">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <a href="https://twitter.com/samantha_ming" target="_blank">samantha_ming</a>
+          </div>
+          <div class="column">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <a href="https://www.facebook.com/hisamanthaming" target="_blank">hi.samanthaming</a>
+          </div>
+          <div class="column">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+            <a href="https://twitter.com/samantha_ming" target="_blank">samanthaming</a>
+          </div>
+        </div>
+      </div><!--end social media-->
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="vue.js"></script>
+</body>
+
+</html>
