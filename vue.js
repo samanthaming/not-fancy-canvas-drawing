@@ -3,8 +3,8 @@ new Vue({
   data: {
     canvasTop: 0,
     canvasLeft: 0,
-    lastX: 0,
-    lastY: 0,
+    startX: 0,
+    startY: 0,
     lineWidth: 10,
     isDrawing: false,
     isEraser: false,
@@ -35,14 +35,15 @@ new Vue({
 
       const {canvas, ctx} = this.getCanvas();
 
-      ctx.strokeStyle = this.selectedColor;
       ctx.lineJoin = 'round';
       ctx.lineCap = 'round';
+      ctx.strokeStyle = this.selectedColor;
       ctx.lineWidth = this.lineWidth;
 
       ctx.beginPath();
+
       // start from
-      ctx.moveTo(this.lastX, this.lastY);
+      ctx.moveTo(this.startX, this.startY);
 
       // go to
       ctx.lineTo(e.offsetX, e.offsetY);
@@ -50,15 +51,12 @@ new Vue({
 
       // 1. Update start point to where mouse is unpressed
       //    Otherwise it'd be always 0,0
-      [this.lastX, this.lastY] = [e.offsetX, e.offsetY]
+      [this.startX, this.startY] = [e.offsetX, e.offsetY]
     },
     onMouseDown(e) {
       this.isDrawing = true;
       // 2. set the drawing point to where the mouse down is pressed
-      [this.lastX, this.lastY] = [e.offsetX, e.offsetY]
-    },
-    onMouseUp() {
-      this.isDrawing = false;
+      [this.startX, this.startY] = [e.offsetX, e.offsetY]
     },
     onMouseMove(e) {
       this.draw(e);
@@ -68,6 +66,9 @@ new Vue({
       const cursor = this.$refs.cursor;
 
       cursor.style.transform = `translate(${x - 10}px, ${y - 10}px)`;
+    },
+    onMouseUp() {
+      this.isDrawing = false;
     },
     onMouseOut() {
       this.isDrawing = false;
