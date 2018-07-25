@@ -23,6 +23,7 @@ Or see it live! [here](https://samanthaming.github.io/not-fancy-canvas-drawing/)
 <br>
 
 ![App](images/not-fancy-cavas-drawing.png.png)
+
 ![App](images/not-fancy-canvas-drawing-drawn.png)
 
 # Notes
@@ -37,7 +38,7 @@ We need to set the width and height of our canvas. We also add a `ref` attribute
 
 _[Vue.js API: ref](https://vuejs.org/v2/api/#ref)_
 
-It's similar to vanilla JS `document.querySelector('canvas').
+It's similar to vanilla JS `document.querySelector('canvas')`.
 
 ```html
 <canvas 
@@ -49,7 +50,7 @@ It's similar to vanilla JS `document.querySelector('canvas').
 
 ## 2. Add Event Handler to our Canvas
 
-Before we create the actual drawing capability, we need to figure what event listeners should we trigger the draw. We need to access the mouse events. We want the drawing to begin when the user press down on the mouse and continue drawing as they move the mouse around. And the drawing should stop, once the mouse is unpressed. So here are the 3 events we need to handle.
+Before we create the actual drawing capability, we need to figure out which event listeners should trigger the draw. To do so, we need to access the mouse events. We want the drawing to begin when the user press down on the mouse and continue drawing as they move the mouse around. And the drawing should stop, once the mouse is unpressed. So here are the 3 events we need to handle.
 
 - `mousedown` event is fired when mouse is pressed on an element.
 - `mousemove` event is fired when mouse is moved while over an element. 
@@ -78,14 +79,17 @@ methods: {
   //    (another context would be 3D)
   const ctx = canvas.getContext('2d');
   
-  // 3. Here we configure the how the drawing will look
+  // 3. Here we configure how the drawing will look
   
   // Draw a line with rounded end caps
   ctx.lineCap = 'round'
+  
   // Create a round corner when 2 lines meet
-  ctx.lineJoin = 'round'; 
+  ctx.lineJoin = 'round';
+  
   // Black Color
   ctx.strokeStyle = '#000000';
+  
   // Thickness of line drawing
   ctx.lineWidth = 3;
 }
@@ -93,7 +97,7 @@ methods: {
 
 ## 4. Create our Drawing Path 
 
-So we just configured how the line drawing should look like. Next, we need configure the starting and go point. The starting point is when the mouse is pressed down. The go point continues as the mouse moves. When the mouse is unpressed, it stops the drawing.
+So we just configured how the line drawing should look like. Next, we need to configure the start and go point. The starting point is when the mouse is pressed down. The go point continues as the mouse moves. When the mouse is unpressed, it stops the drawing.
 
 ```javascript
 //  1. We'll store the starting points in our data
@@ -115,8 +119,8 @@ methods: {
       return;
     }
     
-    // 2.Let's start
-    //  (This is required since we will be using multiple colors)
+    // 2. Let's start
+    //    (This is required since we will be using multiple colors)
     ctx.beginPath(); 
     
     // 3. Starting point
@@ -127,8 +131,8 @@ methods: {
     ctx.stroke();
     
     // 5. We want overwrite the starting point to be the go point
-    //    otherwise, the starting point will always be the same and 
-    //    you won't have drawing effect.
+    //    otherwise, the starting point will always be at the same spot and 
+    //    you won't have the drawing effect.
     this.startX = e.offsetX;
     this.startY = e.offsetY;
   }
