@@ -1,4 +1,4 @@
-# Not Fancy 
+# Not Fancy Canvas Drawing
 
 A simple, not fancy at all, HTML5 canvas drawing.
 
