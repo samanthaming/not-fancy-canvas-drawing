@@ -23,7 +23,7 @@ Or see it live! [here](https://samanthaming.github.io/not-fancy-canvas-drawing/)
 
 <br>
 
-![App](images/not-fancy-cavas-drawing.png.png)
+![App](images/not-fancy-cavas-drawing.png)
 
 ![App](images/not-fancy-canvas-drawing-drawn.png)
 
