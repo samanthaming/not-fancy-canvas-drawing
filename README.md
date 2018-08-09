@@ -12,6 +12,7 @@ A simple, not fancy at all, HTML5 canvas drawing.
 **Built using:**
 
 - Vue
+- Canvas API
 - Google Fonts - Permanent Marker
 - Normalize CSS
 
